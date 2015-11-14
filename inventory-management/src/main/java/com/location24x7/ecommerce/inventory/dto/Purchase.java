@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
-import com.location24x7.ecommerce.inventory.rest.JsonDateOnlySerializer;
-
 public class Purchase implements Dto {
 
     private Long id;

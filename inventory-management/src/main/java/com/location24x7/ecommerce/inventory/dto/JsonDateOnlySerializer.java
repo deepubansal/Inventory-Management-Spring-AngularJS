@@ -1,4 +1,4 @@
-package com.location24x7.ecommerce.inventory.rest;
+package com.location24x7.ecommerce.inventory.dto;
 
 import java.io.IOException;
 import java.text.ParseException;
