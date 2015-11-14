@@ -6,13 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="product")
-public class ProductEntity {
+@Entity(name = "product")
+public class ProductEntity implements EntityType {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column
     private String brand;
     @Column
@@ -34,7 +34,7 @@ public class ProductEntity {
     public ProductEntity(Long id) {
         this.id = id;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -81,8 +81,8 @@ public class ProductEntity {
 
     @Override
     public String toString() {
-        return "Product [id=" + getId() + ", brand=" + brand + ", name=" + name + ", description=" + description + ", size="
-                + size + ", colour=" + colour + "]";
+        return "Product [id=" + getId() + ", brand=" + brand + ", name=" + name + ", description=" + description
+                + ", size=" + size + ", colour=" + colour + "]";
     }
 
     public String getCategory() {

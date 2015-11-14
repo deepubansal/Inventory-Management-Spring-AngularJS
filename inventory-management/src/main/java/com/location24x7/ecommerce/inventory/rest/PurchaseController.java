@@ -13,36 +13,36 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.location24x7.ecommerce.inventory.dto.Product;
-import com.location24x7.ecommerce.inventory.service.ProductService;
+import com.location24x7.ecommerce.inventory.dto.Purchase;
+import com.location24x7.ecommerce.inventory.service.PurchaseService;
 
-@Path("/api/product")
+@Path("/api/purchase")
 @Component
-public class ProductController {
+public class PurchaseController {
 
     @Autowired
-    private ProductService productService;
+    private PurchaseService purchaseService;
 
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getProducts() {
-        return productService.getProducts();
+    public List<Purchase> getPurchases() {
+        return purchaseService.getPurchases();
     }
 
     @GET
-    @Path("/{productId}")
+    @Path("/{purchaseId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Product getProduct(@PathParam("productId") Long productId) {
-        return productService.getProduct(productId);
+    public Purchase getPurchase(@PathParam("purchaseId") Long purchaseId) {
+        return purchaseService.getPurchase(purchaseId);
     }
 
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Product createProduct(Product product) {
-        return productService.createProduct(product);
+    public Purchase createPurchase(Purchase purchase) {
+        return purchaseService.createPurchase(purchase);
     }
 
 }

@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {"com.location24x7.ecommerce.inventory"})
 @EnableJpaRepositories
 @EnableTransactionManagement
-@PropertySources(@PropertySource(value = { "classpath:application.properties" }))
+@PropertySources(@PropertySource(value = {"classpath:application.properties"}))
 public class InventoryWebConfig {
 
     private static final String[] ENTITY_PACKAGES = {"com.location24x7.ecommerce.inventory.model"};

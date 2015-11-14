@@ -1,9 +1,9 @@
-package com.location24x7.ecommerce.inventory.domain;
+package com.location24x7.ecommerce.inventory.dto;
 
 import org.apache.commons.lang3.text.WordUtils;
 import org.springframework.util.StringUtils;
 
-public class Product {
+public class Product implements Dto {
 
     private Long id;
     private String brand;
@@ -13,7 +13,7 @@ public class Product {
     private String colour;
     private String[] identifiers;
     private String category;
-    
+
     public Product(String brand, String name, String size, String colour) {
         super();
         this.brand = brand;
@@ -22,7 +22,8 @@ public class Product {
         this.colour = colour;
     }
 
-    public Product() {}
+    public Product() {
+    }
 
     public Long getId() {
         return id;
@@ -31,7 +32,6 @@ public class Product {
     public String getBrand() {
         return brand;
     }
-
 
     public void setId(Long id) {
         this.id = id;
