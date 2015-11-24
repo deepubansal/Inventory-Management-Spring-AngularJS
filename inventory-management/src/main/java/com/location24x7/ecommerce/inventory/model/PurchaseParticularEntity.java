@@ -2,6 +2,7 @@ package com.location24x7.ecommerce.inventory.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,14 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity(name = "purchase_particular")
+@Entity(name = "PURCHASE_PARTICULAR")
 public class PurchaseParticularEntity implements EntityType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private ProductEntity product;
 
     @Column

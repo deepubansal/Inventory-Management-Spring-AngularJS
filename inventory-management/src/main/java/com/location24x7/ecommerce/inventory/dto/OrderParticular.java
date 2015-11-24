@@ -1,12 +1,16 @@
 package com.location24x7.ecommerce.inventory.dto;
 
 public class OrderParticular implements Dto {
+    
+    private Long id;
 
     private Product product;
 
     private Integer quantity;
 
     private Double totalPrice;
+
+    private OrderParticularStatusType status;
 
     public Integer getQuantity() {
         return quantity;
@@ -32,4 +36,22 @@ public class OrderParticular implements Dto {
         this.product = product;
     }
 
+    public OrderParticularStatusType getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderParticularStatusType status) {
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    
 }

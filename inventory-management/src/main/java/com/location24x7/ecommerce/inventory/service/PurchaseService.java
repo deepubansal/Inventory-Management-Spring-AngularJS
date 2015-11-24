@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.location24x7.ecommerce.inventory.dao.PurchaseDao;
 import com.location24x7.ecommerce.inventory.dto.Purchase;
@@ -18,6 +20,9 @@ public class PurchaseService {
 
     @Autowired
     private PurchaseMapper mapper;
+    
+    @Autowired
+    private StockService stockService;
 
     public List<Purchase> getPurchases() {
         Iterable<PurchaseEntity> entities = purchaseDao.findAll();
@@ -31,10 +36,12 @@ public class PurchaseService {
         return purchase;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Purchase createPurchase(Purchase purchase) {
         PurchaseEntity purchaseEntity = mapper.createEntity(purchase);
         purchaseEntity = purchaseDao.save(purchaseEntity);
         purchaseEntity = purchaseDao.findOne(purchaseEntity.getId());
+        stockService.purchaseMade(purchaseEntity);
         purchase = mapper.createDto(purchaseEntity);
         return purchase;
     }

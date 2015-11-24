@@ -7,8 +7,11 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.location24x7.ecommerce.inventory.dto.OrderParticular;
+import com.location24x7.ecommerce.inventory.dto.OrderParticularStatusType;
+import com.location24x7.ecommerce.inventory.model.OrderParticularStatusEntity;
 import com.location24x7.ecommerce.inventory.model.ProductEntity;
 import com.location24x7.ecommerce.inventory.model.OrderEntity;
 import com.location24x7.ecommerce.inventory.model.OrderParticularEntity;
@@ -25,20 +28,31 @@ public class OrderParticularMapper implements Mapper<OrderParticularEntity, Orde
     }
 
     public OrderParticularEntity createEntity(OrderParticular dto, OrderEntity orderEntity) {
-        OrderParticularEntity entity = new OrderParticularEntity();
+        OrderParticularEntity entity = new OrderParticularEntity(dto.getId());
         entity.setProduct(new ProductEntity(dto.getProduct().getId()));
         entity.setOrder(orderEntity);
         entity.setQuantity(dto.getQuantity());
         entity.setTotalPrice(dto.getTotalPrice());
+        if (!StringUtils.isEmpty(dto.getStatus())) {
+            OrderParticularStatusEntity status = new OrderParticularStatusEntity();
+            status.setOrder(entity);
+            status.setStatus(dto.getStatus().name());
+            entity.getStatusHistory().add(status);
+        }
         return entity;
     }
 
     @Override
     public OrderParticular createDto(OrderParticularEntity e) {
         OrderParticular particular = new OrderParticular();
+        particular.setId(e.getId());
         particular.setProduct(productMapper.createDto(e.getProduct()));
         particular.setQuantity(e.getQuantity());
         particular.setTotalPrice(e.getTotalPrice());
+        List<OrderParticularStatusEntity> statusHistory = e.getStatusHistory();
+        if (!statusHistory.isEmpty() && !StringUtils.isEmpty(statusHistory.get(0).getStatus())) {
+            particular.setStatus(OrderParticularStatusType.valueOf(statusHistory.get(0).getStatus()));
+        }
         return particular;
     }
 

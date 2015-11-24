@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.location24x7.ecommerce.inventory.dao.ProductDao;
 import com.location24x7.ecommerce.inventory.dto.Product;
@@ -18,6 +20,9 @@ public class ProductService {
 
     @Autowired
     private ProductMapper mapper;
+    
+    @Autowired
+    private StockService stockService;
 
     public List<Product> getProducts() {
         Iterable<ProductEntity> entities = productDao.findAll();
@@ -31,11 +36,13 @@ public class ProductService {
         return product;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Product createProduct(Product product) {
         ProductEntity productEntity = mapper.createEntity(product);
         productEntity = productDao.save(productEntity);
         productEntity = productDao.findOne(productEntity.getId());
         product = mapper.createDto(productEntity);
+        stockService.initializeStock(productEntity);
         return product;
     }
 }

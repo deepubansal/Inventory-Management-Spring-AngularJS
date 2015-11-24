@@ -1,6 +1,7 @@
 package com.location24x7.ecommerce.inventory.rest;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -13,7 +14,9 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.location24x7.ecommerce.inventory.dto.EventType;
 import com.location24x7.ecommerce.inventory.dto.Order;
+import com.location24x7.ecommerce.inventory.dto.OrderUpdate;
 import com.location24x7.ecommerce.inventory.service.OrderService;
 
 @Path("/api/order")
@@ -31,10 +34,10 @@ public class OrderController {
     }
 
     @GET
-    @Path("/{orderId}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Order getOrder(@PathParam("orderId") Long orderId) {
-        return orderService.getOrder(orderId);
+    public Order getOrder(@PathParam("id") Long id) {
+        return orderService.getOrder(id);
     }
 
     @POST
@@ -45,4 +48,31 @@ public class OrderController {
         return orderService.createOrder(order);
     }
 
+    @POST
+    @Path("/{id}/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Order updateOrder(@PathParam("id") Long id, OrderUpdate order) {
+        return null;
+    }
+    
+    @POST
+    @Path("/particular/{id}/event/{eventType}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Order newEvent(@PathParam("id") Long id, @PathParam("eventType") EventType eventType,
+            String reason) {
+        return orderService.newEvent(id, eventType, reason);
+    }
+    
+    @GET
+    @Path("/particular/{id}/allowedEvents")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Set<EventType> getAllowedEvents(@PathParam("id") Long id) {
+        return orderService.getAllowedEvents(id);
+    }
+    
+    
+    
+    
 }

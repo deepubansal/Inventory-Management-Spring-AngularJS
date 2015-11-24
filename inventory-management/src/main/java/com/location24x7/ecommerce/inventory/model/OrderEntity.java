@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
-@Entity(name = "order_details")
+@Entity(name = "ORDER_DETAILS")
 public class OrderEntity implements EntityType {
 
     @Id
