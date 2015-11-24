@@ -22,20 +22,22 @@
             <table st-table="inventoryItems" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>first name</th>
-                    <th>last name</th>
-                    <th>birth date</th>
-                    <th>balance</th>
-                    <th>email</th>
+                    <th>Product</th>
+                    <th>In Stock</th>
+                    <th>Being Returned</th>
+                    <th>Returned OK</th>
+                    <th>Returned Defective/Unusable</th>
+                    <th>Purchased</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in inventoryItems">
-                    <td>{{item.firstName}}</td>
-                    <td>{{item.lastName}}</td>
-                    <td>{{item.birthDate}}</td>
-                    <td>{{item.balance}}</td>
-                    <td>{{item.email}}</td>
+                <tr ng-repeat="stock in inventoryItems">
+                    <td>{{stock.product.productKey}}</td>
+                    <td>{{stock.current}}</td>
+                    <td>{{stock.beingReturned}}</td>
+                    <td>{{stock.returnedOk}}</td>
+                    <td>{{stock.returnedDefective}}</td>
+                    <td>{{stock.purchased}}</td>
                 </tr>
                 </tbody>
             </table>

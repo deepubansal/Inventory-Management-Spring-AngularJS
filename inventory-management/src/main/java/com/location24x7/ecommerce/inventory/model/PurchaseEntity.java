@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
-@Entity(name = "purchase")
+@Entity(name = "PURCHASE")
 public class PurchaseEntity implements EntityType {
 
     @Id
