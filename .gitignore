@@ -82,7 +82,7 @@ Servers/
 .texlipse
 
 # Maven
-log/
+logs/
 target/
 
 

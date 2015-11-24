@@ -1,0 +1,30 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Products</h1>
+			<table st-table="products" class="table table-striped">
+				<thead>
+				<tr>
+					<th>Product</th>
+					<th>Brand</th>
+					<th>Colour</th>
+					<th>Size</th>
+					<th>Category</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="product in products">
+					<td>{{product.productKey}}</td>
+					<td>{{product.brand}}</td>
+					<td>{{product.colour}}</td>
+					<td>{{product.size}}</td>
+					<td>{{product.category}}</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+</div>
