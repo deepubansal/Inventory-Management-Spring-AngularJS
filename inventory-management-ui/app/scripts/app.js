@@ -95,9 +95,13 @@ angular
         url:'/form'
     })
       .state('dashboard.products',{
-        templateUrl:'views/pages/products.html',
+        templateUrl:'views/pages/product/products.html',
         controller: 'ProductsCtrl',
-        url:'/blank'
+        url:'/products'
+    }).state('dashboard.products.add',{
+        templateUrl:'views/pages/product/add-product.html',
+        controller: 'AddproductCtrl',
+        url:'/add'
     })
       .state('login',{
         templateUrl:'views/pages/login.html',

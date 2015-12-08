@@ -12,6 +12,9 @@ angular.module('sbAdminApp')
   	return {
   		getAllProducts: function() {
   			return $http.get(configService.serviceBase + '/product');
+  		},
+  		addProduct: function(product) {
+  			return $http.post(configService.serviceBase + '/product/create', product);
   		}
   	};
   }]);
